@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Disease Prediction</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://cdn.pixabay.com/photo/2021/06/20/08/28/wheat-grass-6350274_1280.jpg");
+            background-size: cover;
+            background-repeat: repeat;
+            background-position: center;
+        }
+
+        nav {
+            background-color: #007bff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: #0056b3;
+        }
+
+        .active {
+            background-color: #0056b3;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Other content styles */
+        #imageInput {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .result h2 {
+            color: green;
+        }
+
+        #chatContainer {
+            margin-top: 20px;
+        }
+
+        #chatMessages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        #messageInput {
+            width: calc(100% - 90px);
+            padding: 10px;
+        }
+
+        #sendMessageBtn {
+            width: 80px;
+        }
+
+        /* Community Page Styles */
+        .community-section {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .post {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .post-header {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .post-content {
+            margin-top: 10px;
+        }
+
+        .post-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .post-form button {
+            margin-top: 10px;
+        }
+    </style>
+    <!-- Link to weather.css -->
+    <link rel="stylesheet" href="weather.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" id="home" class="active">Home</a>
+        
+
+        <a href="cmt.html" id="community">Community</a>
+        <a href="#" id="contact">Contact</a>
+        <a href="#" id="weather">Weather</a>
+    </nav>
+
+    <!-- Dynamic Content Area -->
+    <div class="content" id="content">
+        <!-- Initial content for Home page -->
+        <div id="homePage">
+            {% extends "import.html" %} 
+            {% block content %}
+            
+            <center>
+            <br><h2>Crop Disease Classification Using Artificial Intelligence</h2><br>
+            
+                <form id="upload-file" method="post" enctype="multipart/form-data">
+                     <input type="file" name="file" class="btn btn-success" id="imageUpload" accept=".png, .jpg, .jpeg">
+                </form>
+            
+            
+                <div class="image-section" style="display:none;">
+                     <img id="imagePreview"  class="img-responsive" src="#" style="width:300px;height:300px;"/><br><br>
+                     <div>
+                        <button type="button" class="btn btn-info btn-lg " id="btn-predict">Predict!</button>
+                     </div>
+                </div>
+            
+            
+            
+                <div class="loader" style="display:none;"></div>
+            
+                <h3 id="result">
+                    <span> </span>
+                </h3>
+            
+            
+            </center><br><br>
+            <h2>Chat with AI Assistant</h2>
+            <input type="text" id="chatInput" placeholder="Ask a question..." />
+            <br />
+            <button id="chatBtn">Send</button>
+            <div class="result" id="chatResult"></div>
+        </div>
+
+        <!-- Community Page -->
+        <div id="communityPage" style="display: none;">
+            <h1>Community Forum</h1>
+            <p>Connect with farmers, researchers, and agri-colleges here.</p>
+
+            <!-- Message Board -->
+            <div class="community-section">
+                <h2>Post a Message</h2>
+                <form class="post-form">
+                    <textarea id="newPostContent" rows="4" placeholder="Share your thoughts..."></textarea>
+                    <button type="button" id="postBtn">Post</button>
+                </form>
+
+                <h2>Community Posts</h2>
+                <div id="communityPosts"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+            {% endblock %}
+            <!-- Chat Section -->
+            
+</body>
+</html>
